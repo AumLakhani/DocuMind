@@ -146,6 +146,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 
 /* Upload Screen */
@@ -240,6 +241,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 
 .messages-container {
@@ -251,6 +253,7 @@ body {
     gap: 1rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    min-height: 0;
 }
 
 .messages-container::-webkit-scrollbar {

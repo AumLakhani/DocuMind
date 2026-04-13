@@ -1,11 +1,11 @@
-import ollama
+import os
+from groq import Groq
+
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def generate_answer(query, chunks):
 
-    
     clean_chunks = [c.replace("\n", " ").strip() for c in chunks[:3]]
-
-    
     context = " ".join(clean_chunks)
 
     prompt = f"""
@@ -29,13 +29,11 @@ Question:
 Answer:
 """
 
-    response = ollama.chat(
-        model='phi3',  # or your model
+    response = client.chat.completions.create(
+        model="llama3-8b-8192",
         messages=[{"role": "user", "content": prompt}],
-        options={
-            "temperature": 0.2,   # 🔥 more accuracy
-            "top_p": 0.9
-        }
+        temperature=0.2,
+        max_tokens=500
     )
 
-    return response['message']['content']
+    return response.choices[0].message.content
